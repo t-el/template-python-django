@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TechTalk{% endblock title %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.3/dist/lux/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     {% block style %}
+
+     <style>
+     .scrollable-list {
+      overflow-x: scroll;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch; /* For iOS devices */
+    }
+    .scrollable-list ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .scrollable-list li {
+      display: inline-block;
+      padding: 10px;
+      margin-right: 5px;
+      background-color: #f2f2f2;
+    }
+    .controls {
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+     {% endblock style %}
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg border shadow-sm ">
+    <div class="container">
+      <a class="navbar-brand" href="#">TechTalk</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Home
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'app:posts' %}">Articles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Topics</a>
+          </li>
+          
+         
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="{% url 'app:about_site' %}" >About the site</a>
+
+              <a class="dropdown-item" href="#">About Me</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Feedback</a>
+              <a class="dropdown-item" href="#">Support me</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col card">
+        {% block content %}
+ 
+        {% endblock content %}
+
+      </div>
+      <div class="col-md-3 card">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+        At maiores enim magni hic iure quidem similique pariatur deserunt numquam veritatis 
+        inventore rem 
+        adipisci,
+         aliquam eos cupiditate animi neque ratione delectus.
+      </div>
+    </div>
+  </div>
+  
+
+
+
+</body>
+</html>
