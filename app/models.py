@@ -20,6 +20,7 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         return reverse('app:posts_by_category', args=[self.slug])
+        
 from ckeditor_uploader.fields import RichTextUploadingField 
 class Post(models.Model):
     title = models.CharField(max_length=255)

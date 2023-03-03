@@ -11,6 +11,9 @@ from .forms import PostForm
 def index(request):
     return render(request,'app/index.html')
 
+def mit(request):
+    return render(request,'app/license.html')    
+
 def creat_post(request):
     if request.method == 'GET':
         form = PostForm()
@@ -24,6 +27,8 @@ def creat_post(request):
 def about_site(request):
     return render(request,'app/about_site.html')
 
+
+from django.db.models import Q
 class AllPostsView(ListView):
     model = Post
     template_name = 'app/list_posts.html'
@@ -31,7 +36,25 @@ class AllPostsView(ListView):
     paginate_by = 4
 
     def get_queryset(self):
-        return Post.objects.order_by('-created_on')
+        queryset = super().get_queryset()
+        category = self.request.GET.get('category')
+
+        search_term = self.request.GET.get('search', None)
+        if search_term:
+            queryset = queryset.filter(
+                Q(title__icontains=search_term) | Q(content__icontains=search_term)
+            )
+
+        if category:
+            queryset = queryset = queryset.filter(categories__pk=category)
+
+        return queryset
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search_term'] = self.request.GET.get('search')
+        return context
 
 
 

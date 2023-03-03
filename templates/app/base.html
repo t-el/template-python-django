@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,55 +40,59 @@
 <body>
   <nav class="navbar navbar-expand-lg border shadow-sm ">
     <div class="container">
-      <a class="navbar-brand" href="#">TechTalk</a>
+      <a class="navbar-brand" href="{% url 'app:posts' %}">TechTalk</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link active" href="#">Home
-              <span class="visually-hidden">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="{% url 'app:posts' %}">Articles</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Topics</a>
           </li>
           
          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="{% url 'app:about_site' %}" >About the site</a>
-
-              <a class="dropdown-item" href="#">About Me</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Feedback</a>
-              <a class="dropdown-item" href="#">Support me</a>
-            </div>
-          </li>
         </ul>
       </div>
     </div>
   </nav>
 
   <div class="container">
+    <form class="m-2" method="get" action="{% url 'app:posts' %}">
+      <div class="input-group mb-3">
+        <input type="text" name="search"  class="form-control" placeholder="... " aria-label="" aria-describedby="button-addon2">
+        <input class="btn btn-primary" value="SEARCH" type="submit" />
+      </div>
+    </form>
+  
     <div class="row">
-      <div class="col card">
+      <div class="col">
         {% block content %}
  
         {% endblock content %}
 
       </div>
-      <div class="col-md-3 card">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-        At maiores enim magni hic iure quidem similique pariatur deserunt numquam veritatis 
-        inventore rem 
-        adipisci,
-         aliquam eos cupiditate animi neque ratione delectus.
+      <div style="border-left: 1px solid rgb(204, 203, 203);" class="col-md-3 ">
+        <h4>Categories</h4>
+         
+          {% for category in categories %}
+            
+              
+                <a href="/posts?category={{category.id}}">{{ category.name }}</a><br>
+              
+            
+          {% endfor %}
+     
+      <div>
+        <hr>
+        
+        <a href="{% url 'app:mit' %}">MIT License</a>
+<br>
+        <a  href="{% url 'app:about_site' %}" >About</a>
+
+       <hr>
+      <p>Crated with ❤️ and Django by Taha Elkarroumy</p> 
+      </div>
+      
       </div>
     </div>
   </div>

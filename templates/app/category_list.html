@@ -1,0 +1,8 @@
+
+    <h1>All Categories</h1>
+    <ul>
+        {% for category in categories %}
+            <li><a href="{% url 'post-list-by-category' category.pk %}">{{ category.name }}</a></li>
+        {% endfor %}
+    </ul>
+
