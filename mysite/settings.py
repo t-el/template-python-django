@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'ckeditor', # CKEditor config
     'ckeditor_uploader',
     'django.contrib.humanize',
+    'request',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'request.middleware.RequestMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
